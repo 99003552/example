@@ -1,21 +1,40 @@
 package com.honda.ccsportal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.base.Predicates;
 
+import io.swagger.annotations.ApiModelProperty;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 @SpringBootApplication
 @EnableJpaRepositories("com.honda.ccsportal.repository")
+@EnableSwagger2
+@RestController
 
 public class CcsportalApplication {
 
+	@ApiModelProperty(required = false, hidden = true)
+	private String internallyUsedProperty;
+
+	private static final Logger LOG = LoggerFactory.getLogger(CcsportalApplication.class);
+
+	//@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(CcsportalApplication.class);
+	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CcsportalApplication.class, args);
 	}

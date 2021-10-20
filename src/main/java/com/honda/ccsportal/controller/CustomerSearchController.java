@@ -1,5 +1,8 @@
 package com.honda.ccsportal.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.honda.ccsportal.entity.Customer;
+import com.honda.ccsportal.entity.CustomerSearch;
 import com.honda.ccsportal.service.TcuServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +25,7 @@ import io.swagger.annotations.ApiResponses;
 
 
 @RestController
-@RequestMapping("/admin/sim")
+@RequestMapping("/vehicle")
 public class CustomerSearchController {
 	
 	
@@ -34,7 +37,7 @@ public class CustomerSearchController {
 
 
 
-			@ApiOperation(tags = "Sim Details", value = "fetches the list of Sim Details")
+			@ApiOperation(tags = "CustomerSearch Details", value = "fetches the list of CustomerSearch Details")
 			@ApiResponses(value = { @ApiResponse(code = 200, message = "successfull operation"),
 					@ApiResponse(code = 400, message = "bad request"), @ApiResponse(code = 401, message = "unauthorized"),
 					@ApiResponse(code = 403, message = "forbidden"), @ApiResponse(code = 404, message = "not found"),
@@ -42,7 +45,7 @@ public class CustomerSearchController {
 					@ApiResponse(code = 500, message = "Internal Server Error (System Issues)"),
 					@ApiResponse(code = 503, message = "Service Unavailable"),
 					@ApiResponse(code = 504, message = "Failed to establish Backside connection") })
-			@GetMapping(value = "/simDetails", produces = { "application/json" })
+			@GetMapping(value = "/lookup", produces = { "application/json" })
 			public ResponseEntity<?> SimDetails(
 					@ApiParam(value = "hondaHeaderType.userId", required = true) @RequestHeader(value="hondaHeaderType.userId") String userId,
 					@ApiParam(value = "hondaHeaderType.businessId", required = true) @RequestHeader(value = "hondaHeaderType.businessId") String businessId,
@@ -61,9 +64,9 @@ public class CustomerSearchController {
 				responseHeaders.set("hondaHeaderType.language_code", language_code);
 				responseHeaders.set("hondaHeaderType.siteId", siteId);
 				responseHeaders.set("hondaHeaderType.businessId", businessId);
-				logger.info("sim Details");  
+				logger.info("CustomerSearch Details");  
 				try {
-					Customer customer=new Customer();
+					List<CustomerSearch> customer=new ArrayList<>();
 					customer=tcuServiceImpl.getTcuSerialNumber(serialNumber);
 					return new ResponseEntity<>(customer,responseHeaders,HttpStatus.OK);
 				} catch (Exception e) {

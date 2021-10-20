@@ -21,7 +21,7 @@ public class Tcu {
 	@Column(name = "tcu_id")
 	private String tcu_id;
 
-	@Column(name = "device_id")
+	@Column(name = "device_id",insertable=false,updatable=false)
 	private int deviceId;
 
 	@Column(name = "hardware_version")

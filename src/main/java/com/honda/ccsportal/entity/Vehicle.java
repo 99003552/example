@@ -20,7 +20,7 @@ public class Vehicle {
 	@Column(name = "vehicle_id")
 	private int vehicle_id;
 	
-	@Column(name = "customer_id")
+	@Column(name = "customer_id",insertable=false,updatable=false)
 	private int customer_id;
 	
 	@Column(name = "model_id")

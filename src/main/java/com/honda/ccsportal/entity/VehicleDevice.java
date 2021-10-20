@@ -21,7 +21,7 @@ public class VehicleDevice {
 	@Column(name = "device_id")
 	private int device_id;
     
-	@Column(name = "vehicle_id")
+	@Column(name = "vehicle_id", insertable=false ,updatable=false)
 	private int vehicle_id;
 	
 	@Column(name = "device_type")

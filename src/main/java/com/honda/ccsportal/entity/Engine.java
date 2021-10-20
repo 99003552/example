@@ -23,7 +23,7 @@ public class Engine {
 	@Column(name = "model_id")
 	private int model_id;
 	
-	@Column(name = "device_id")
+	@Column(name = "device_id", insertable=false ,updatable=false)
 	private int device_id;
 	
 	@Column(name = "vehicle_id")
