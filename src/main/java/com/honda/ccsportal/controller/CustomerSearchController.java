@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.honda.ccsportal.entity.CustomerSearch;
-import com.honda.ccsportal.service.TcuServiceImpl;
+import com.honda.ccsportal.service.CustomerSearchService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,7 +30,7 @@ public class CustomerSearchController {
 	
 	
 	  @Autowired
-			private TcuServiceImpl tcuServiceImpl;
+			private CustomerSearchService customerServiceServiceImpl;
 
 			private static final Logger logger = LoggerFactory
 					.getLogger(CustomerSearchController.class);
@@ -46,7 +46,7 @@ public class CustomerSearchController {
 					@ApiResponse(code = 503, message = "Service Unavailable"),
 					@ApiResponse(code = 504, message = "Failed to establish Backside connection") })
 			@GetMapping(value = "/lookup", produces = { "application/json" })
-			public ResponseEntity<?> SimDetails(
+			public ResponseEntity<?> customerDetails(
 					@ApiParam(value = "hondaHeaderType.userId", required = true) @RequestHeader(value="hondaHeaderType.userId") String userId,
 					@ApiParam(value = "hondaHeaderType.businessId", required = true) @RequestHeader(value = "hondaHeaderType.businessId") String businessId,
 					@ApiParam(value = "hondaHeaderType.collectedTimestamp", required = true) @RequestHeader(value = "hondaHeaderType.collectedTimestamp") String collectedTimestamp,
@@ -67,7 +67,7 @@ public class CustomerSearchController {
 				logger.info("CustomerSearch Details");  
 				try {
 					List<CustomerSearch> customer=new ArrayList<>();
-					customer=tcuServiceImpl.getTcuSerialNumber(serialNumber);
+					customer=customerServiceServiceImpl.getTcuSerialNumber(serialNumber);
 					return new ResponseEntity<>(customer,responseHeaders,HttpStatus.OK);
 				} catch (Exception e) {
 					logger.error("Exception in ContentManagementController tipDetails ::: " + e);

@@ -6,7 +6,7 @@ import com.honda.ccsportal.entity.Customer;
 import com.honda.ccsportal.entity.CustomerSearch;
 import com.honda.ccsportal.entity.Tcu;
 
-public interface TcuService {
+public interface CustomerSearchService {
 
 	
 	public List<Tcu> getTcuById(String tcu_id);

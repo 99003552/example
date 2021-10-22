@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,19 +19,20 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
-@SpringBootApplication
+@SpringBootApplication//(scanBasePackages={
+//"com.honda.ccsportal.something", "com.honda.ccsportal.CcsportalApplication"})
 @EnableJpaRepositories("com.honda.ccsportal.repository")
 @EnableSwagger2
 @RestController
 
-public class CcsportalApplication {
+public class CcsportalApplication extends SpringBootServletInitializer{
 
 	@ApiModelProperty(required = false, hidden = true)
 	private String internallyUsedProperty;
 
 	private static final Logger LOG = LoggerFactory.getLogger(CcsportalApplication.class);
 
-	//@Override
+	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(CcsportalApplication.class);
 	}

@@ -7,6 +7,7 @@ public class CustomerSearch {
 	private String tcu_status;
 	private int customer_id;
 	private String serialNumber;
+	private String hullnumber;
 	
 	public String getTcu_id() {
 		return tcu_id;
@@ -37,6 +38,12 @@ public class CustomerSearch {
 	}
 	public void setBoatName(String boatName) {
 		this.boatName = boatName;
+	}
+	public String getHullnumber() {
+		return hullnumber;
+	}
+	public void setHullnumber(String hullnumber) {
+		this.hullnumber = hullnumber;
 	}
 	
 }

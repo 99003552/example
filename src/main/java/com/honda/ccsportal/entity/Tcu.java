@@ -44,12 +44,6 @@ public class Tcu {
 
 	@Column(name = "created_ts")
 	private Date createdDate;
-
-	@Column(name = "updated_by")
-	private String updatedNm;
-
-	@Column(name = "updated_ts")
-	private Date updatedDate;
 	
 	@Column(name = "tcu_status")
 	private String tcuStatus;
@@ -128,22 +122,6 @@ public class Tcu {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
-	}
-
-	public String getUpdatedNm() {
-		return updatedNm;
-	}
-
-	public void setUpdatedNm(String updatedNm) {
-		this.updatedNm = updatedNm;
-	}
-
-	public Date getUpdatedDate() {
-		return updatedDate;
-	}
-
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
 	}
 
 	public String getTcuStatus() {
