@@ -3,6 +3,8 @@ package com.honda.ccsportal.entity;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import com.honda.ccsportal.model.CustomerSearch;
+
 
 public class CustomerSearchTest {
 

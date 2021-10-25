@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.honda.ccsportal.entity.CustomerSearch;
+import com.honda.ccsportal.model.CustomerSearch;
+import com.honda.ccsportal.model.CustomerSearchEngine;
+import com.honda.ccsportal.model.LookUpRequest;
 import com.honda.ccsportal.service.CustomerSearchService;
+import com.honda.ccsportal.service.CustomerSearchServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,7 +33,7 @@ public class CustomerSearchController {
 	
 	
 	  @Autowired
-			private CustomerSearchService customerServiceServiceImpl;
+			private CustomerSearchServiceImpl customerServiceServiceImpl;
 
 			private static final Logger logger = LoggerFactory
 					.getLogger(CustomerSearchController.class);
@@ -55,8 +58,8 @@ public class CustomerSearchController {
 					@ApiParam(value = "hondaHeaderType.messageId", required = true) @RequestHeader(value = "hondaHeaderType.messageId")  String messageId,
 					@ApiParam(value = "hondaHeaderType.siteId", required = true) @RequestHeader(value = "hondaHeaderType.siteId") String siteId,
 					@ApiParam(value = "hondaHeaderType.systemId", required = true) @RequestHeader(value = "hondaHeaderType.systemId") String systemId,
-			        @RequestBody String serialNumber)
-					{
+			        @RequestBody LookUpRequest lookUpRequest)	
+			{
 				HttpHeaders responseHeaders = new HttpHeaders();
 				responseHeaders.set("hondaHeaderType.messageId", messageId.toString());
 				responseHeaders.set("hondaHeaderType.systemId", systemId);
@@ -66,9 +69,35 @@ public class CustomerSearchController {
 				responseHeaders.set("hondaHeaderType.businessId", businessId);
 				logger.info("CustomerSearch Details");  
 				try {
-					List<CustomerSearch> customer=new ArrayList<>();
-					customer=customerServiceServiceImpl.getTcuSerialNumber(serialNumber);
-					return new ResponseEntity<>(customer,responseHeaders,HttpStatus.OK);
+					if(!lookUpRequest.getTcuSerial().isEmpty())	
+					{
+						List<CustomerSearch> customer=new ArrayList<>();  
+						customer=customerServiceServiceImpl.getTcuSerialNumber(lookUpRequest.getTcuSerial());
+						return new ResponseEntity<>(customer,responseHeaders,HttpStatus.OK);
+					}
+
+					else if(!lookUpRequest.getEngineNumber().isEmpty())
+					{
+						List<CustomerSearchEngine> customer=new ArrayList<>();
+						
+                          customer=customerServiceServiceImpl.getEngineDetails(Integer.parseInt(lookUpRequest.getEngineNumber()));//.getEngineDetails(lookUpRequest.getEngineNumber());
+      					  return new ResponseEntity<>(customer,responseHeaders,HttpStatus.OK);
+					}
+					
+					else if(lookUpRequest.getEngineNumber().isEmpty() && lookUpRequest.getTcuSerial().isEmpty()) {
+						List<String> result=new ArrayList<>();
+						result.add("please enter any value!!");
+    					return new ResponseEntity<>(result,responseHeaders,HttpStatus.OK);
+
+					}
+					
+					else {
+						List<String> result=new ArrayList<>();
+						result.add("enter a valid value!!");
+    					return new ResponseEntity<>(result,responseHeaders,HttpStatus.OK);
+
+					}
+
 				} catch (Exception e) {
 					logger.error("Exception in ContentManagementController tipDetails ::: " + e);
 					return new ResponseEntity<>(responseHeaders, HttpStatus.EXPECTATION_FAILED);

@@ -18,10 +18,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.honda.ccsportal.entity.Customer;
-import com.honda.ccsportal.entity.CustomerSearch;
 import com.honda.ccsportal.entity.Tcu;
 import com.honda.ccsportal.entity.Vehicle;
 import com.honda.ccsportal.entity.VehicleDevice;
+import com.honda.ccsportal.model.CustomerSearch;
 import com.honda.ccsportal.repository.TcuRepository;
 
 
@@ -32,7 +32,7 @@ import com.honda.ccsportal.repository.TcuRepository;
 
 public class CustomerSearchServiceImplTest {
 	
-	@Autowired
+	/*@Autowired
 	CustomerSearchServiceImpl customerSearchService;
 	
 	@Autowired
@@ -102,14 +102,7 @@ public class CustomerSearchServiceImplTest {
      
      Tcu tcuObj=customerSearchObj.findBySerialNumber(serialNumber).get(0);
      
-     
-    /* CustomerSearch customerSearch=new CustomerSearch();
-     customerSearch.setTcu_id("1111");
-     customerSearch.setSerialNumber("TC_1234");
-     customerSearch.setTcu_status("Active");
-     customerSearch.setHullnumber("dfajyrh");
-     customerSearch.setBoatName("SeaShore");
-     customerSearch.setCustomer_id(1);*/
+  
      
      
      CustomerSearch customerSearch=new CustomerSearch();
@@ -131,7 +124,7 @@ public class CustomerSearchServiceImplTest {
      
 
 		
-	}
+	}*/
 
 	/*String serialNumber="Tc_4567";
     List<CustomerSearch> customerSearch=new ArrayList<>();

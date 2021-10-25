@@ -1,11 +1,11 @@
-package com.honda.ccsportal.entity;
+package com.honda.ccsportal.model;
 
 public class CustomerSearch {
 
 	private String tcu_id;
     public String boatName;
 	private String tcu_status;
-	private int customer_id;
+	private String customer_id;
 	private String serialNumber;
 	private String hullnumber;
 	
@@ -21,10 +21,10 @@ public class CustomerSearch {
 	public void setTcu_status(String tcu_status) {
 		this.tcu_status = tcu_status;
 	}
-	public int getCustomer_id() {
+	public String getCustomer_id() {
 		return customer_id;
 	}
-	public void setCustomer_id(int customer_id) {
+	public void setCustomer_id(String customer_id) {
 		this.customer_id = customer_id;
 	}
 	public String getSerialNumber() {

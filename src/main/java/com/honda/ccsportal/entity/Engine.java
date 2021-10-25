@@ -164,4 +164,12 @@ public class Engine {
 		this.updated_ts = updated_ts;
 	}
 
+	public VehicleDevice getVdObj() {
+		return vdObj;
+	}
+
+	public void setVdObj(VehicleDevice vdObj) {
+		this.vdObj = vdObj;
+	}
+
 }
