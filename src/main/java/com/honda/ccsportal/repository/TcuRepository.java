@@ -14,5 +14,6 @@ public interface TcuRepository extends JpaRepository<Tcu,String>{
 	
 	public List<Tcu> findBySerialNumber(String serialNumber);
 	
-    public List<Engine> findByengine_id(int engine_id);
+    //public List<Engine> findByEngine_id(int engine_id);
+    
 }

@@ -18,7 +18,7 @@ public class Engine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "engine_id")
-	private int engine_id;
+	private int engineId;
 	
 	@Column(name = "model_id")
 	private int model_id;
@@ -32,7 +32,7 @@ public class Engine {
 	@Column(name = "position_id")
 	private int position_id;
 	
-	@Column(name = "type")
+	@Column(name = "engine_type")
 	private String type;
 	
 	@Column(name = "horse_power")
@@ -58,14 +58,14 @@ public class Engine {
 	
 	@OneToOne
 	@JoinColumn(name="device_id")
-	private VehicleDevice vdObj;
+	private VehicleDevice vehiceldeviceObj;
 
-	public int getEngine_id() {
-		return engine_id;
+	public int getEngineId() {
+		return engineId;
 	}
 
-	public void setEngine_id(int engine_id) {
-		this.engine_id = engine_id;
+	public void setEngineId(int engineId) {
+		this.engineId = engineId;
 	}
 
 	public int getModel_id() {
@@ -164,12 +164,12 @@ public class Engine {
 		this.updated_ts = updated_ts;
 	}
 
-	public VehicleDevice getVdObj() {
-		return vdObj;
+	public VehicleDevice getVehiceldeviceObj() {
+		return vehiceldeviceObj;
 	}
 
-	public void setVdObj(VehicleDevice vdObj) {
-		this.vdObj = vdObj;
+	public void setVehiceldeviceObj(VehicleDevice vehiceldeviceObj) {
+		this.vehiceldeviceObj = vehiceldeviceObj;
 	}
 
 }

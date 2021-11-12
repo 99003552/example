@@ -8,6 +8,7 @@ public class CustomerSearchEngine {
 	private String customer_id;
 	private String serialNumber;
 	private String hullnumber;
+	private String ownername;
 	
 	
 	public int getEngine_id() {
@@ -45,6 +46,12 @@ public class CustomerSearchEngine {
 	}
 	public void setHullnumber(String hullnumber) {
 		this.hullnumber = hullnumber;
+	}
+	public String getOwnername() {
+		return ownername;
+	}
+	public void setOwnername(String ownername) {
+		this.ownername = ownername;
 	}
 	
 	

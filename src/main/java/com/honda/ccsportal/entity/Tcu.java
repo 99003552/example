@@ -50,7 +50,7 @@ public class Tcu {
 
 	@OneToOne
 	@JoinColumn(name="device_id")
-	private VehicleDevice vdObj;
+	private VehicleDevice vehicledeviceObj;
 	
 	public String getTcu_id() {
 		return tcu_id;
@@ -132,12 +132,12 @@ public class Tcu {
 		this.tcuStatus = tcuStatus;
 	}
 
-	public VehicleDevice getVdObj() {
-		return vdObj;
+	public VehicleDevice getVehicledeviceObj() {
+		return vehicledeviceObj;
 	}
 
-	public void setVdObj(VehicleDevice vdObj) {
-		this.vdObj = vdObj;
+	public void setVehicledeviceObj(VehicleDevice vehicledeviceObj) {
+		this.vehicledeviceObj = vehicledeviceObj;
 	}
 
 }

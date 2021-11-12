@@ -73,7 +73,7 @@ public class Vehicle {
 
 	@OneToOne
 	@JoinColumn(name="customer_id")
-	private Customer cdObj;
+	private Customer customerObj;
 	
 	public int getVehicle_id() {
 		return vehicle_id;
@@ -219,12 +219,12 @@ public class Vehicle {
 		this.updated_by = updated_by;
 	}
 
-	public Customer getCdObj() {
-		return cdObj;
+	public Customer getCustomerObj() {
+		return customerObj;
 	}
 
-	public void setCdObj(Customer cdObj) {
-		this.cdObj = cdObj;
+	public void setCustomerObj(Customer customerObj) {
+		this.customerObj = customerObj;
 	}
 	
 	

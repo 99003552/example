@@ -33,10 +33,10 @@ import com.honda.ccsportal.service.CustomerSearchService;
 
 public class CustomerSearchControllerTest {
 	
-	/*@Autowired
+	@Autowired
 	private MockMvc mockMvc;
 
-	String URL = "/hlmc/customer/v1";
+	String URL = "/vehicle/lookup";
 
 	@MockBean
 	CustomerSearchService customerSearchService;
@@ -56,18 +56,18 @@ public class CustomerSearchControllerTest {
 	public void getCustomerDetails() throws Exception{
 		
 		CustomerSearch customerSearch=new CustomerSearch();
-	     customerSearch.setTcu_id("1111");
-	     customerSearch.setSerialNumber("asfd123");
-	     customerSearch.setTcu_status("Active");
-	     customerSearch.setHullnumber("US12314");
-	     customerSearch.setBoatName("SeaShore");
-	     customerSearch.setCustomer_id(1111);
+	    // customerSearch.setTcu_id("1111");
+	     customerSearch.setBoatName("boat");
+	     customerSearch.setCustomer_id("cus_id");
+	     customerSearch.setOwnername("honda");
+	     customerSearch.setTcuNumber("asfd123");
+	     customerSearch.setTCUStatus("Active");;
 	     
 	     List<CustomerSearch> custList=new ArrayList<>();
 	     custList.add(customerSearch);
 	     
 	     when(customerSearchService.getTcuSerialNumber("asfd123")).thenReturn(custList);
-			MvcResult resultInfo = mockMvc.perform(get(URL + "/getcustomerDetails/test honda_id")
+			MvcResult resultInfo = mockMvc.perform(get(URL + "")
 					.param("hondaHeaderType.userId", "user123")
 					.param("hondaHeaderType.messageId", "550e8400-e29b-41d4-a716-446655440000")
 					.param("hondaHeaderType.collectedTimestamp", "2012-08-05T14:02:41.548-05:00")
@@ -101,8 +101,8 @@ public class CustomerSearchControllerTest {
 	@Test
 	public void getcustomerDetailsException() {
 		Mockito.when(customerSearchService.getTcuSerialNumber(URL)).thenThrow(new RuntimeException());
-		assertThat(customerSearchController.customerDetails("", "", "", "", "", "", "", "", ""));
-	}*/
+		//assertThat(customerSearchController.customerDetails("", "", "", "", "", "", "", "", lookuprequest));
+	}
 	
 	
 	

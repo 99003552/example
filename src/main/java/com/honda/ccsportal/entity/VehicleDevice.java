@@ -41,7 +41,7 @@ public class VehicleDevice {
 	
 	@OneToOne
 	@JoinColumn(name="vehicle_id")
-	private Vehicle vObj;
+	private Vehicle vehicleObj;
 
 	public int getDevice_id() {
 		return device_id;
@@ -99,11 +99,11 @@ public class VehicleDevice {
 		this.updated_ts = updated_ts;
 	}
 
-	public Vehicle getvObj() {
-		return vObj;
+	public Vehicle getVehicleObj() {
+		return vehicleObj;
 	}
 
-	public void setvObj(Vehicle vObj) {
-		this.vObj = vObj;
+	public void setVehicleObj(Vehicle vehicleObj) {
+		this.vehicleObj = vehicleObj;
 	}
 }

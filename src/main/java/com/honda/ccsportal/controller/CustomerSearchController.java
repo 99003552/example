@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.honda.ccsportal.model.CustomerSearch;
 import com.honda.ccsportal.model.CustomerSearchEngine;
 import com.honda.ccsportal.model.LookUpRequest;
-import com.honda.ccsportal.service.CustomerSearchService;
 import com.honda.ccsportal.service.CustomerSearchServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
@@ -48,7 +48,7 @@ public class CustomerSearchController {
 					@ApiResponse(code = 500, message = "Internal Server Error (System Issues)"),
 					@ApiResponse(code = 503, message = "Service Unavailable"),
 					@ApiResponse(code = 504, message = "Failed to establish Backside connection") })
-			@GetMapping(value = "/lookup", produces = { "application/json" })
+			@PostMapping(value = "/lookup", produces = { "application/json" })
 			public ResponseEntity<?> customerDetails(
 					@ApiParam(value = "hondaHeaderType.userId", required = true) @RequestHeader(value="hondaHeaderType.userId") String userId,
 					@ApiParam(value = "hondaHeaderType.businessId", required = true) @RequestHeader(value = "hondaHeaderType.businessId") String businessId,
@@ -76,13 +76,13 @@ public class CustomerSearchController {
 						return new ResponseEntity<>(customer,responseHeaders,HttpStatus.OK);
 					}
 
-					else if(!lookUpRequest.getEngineNumber().isEmpty())
+				else if(!lookUpRequest.getEngineNumber().isEmpty())
 					{
 						List<CustomerSearchEngine> customer=new ArrayList<>();
 						
                           customer=customerServiceServiceImpl.getEngineDetails(Integer.parseInt(lookUpRequest.getEngineNumber()));//.getEngineDetails(lookUpRequest.getEngineNumber());
       					  return new ResponseEntity<>(customer,responseHeaders,HttpStatus.OK);
-					}
+					} 
 					
 					else if(lookUpRequest.getEngineNumber().isEmpty() && lookUpRequest.getTcuSerial().isEmpty()) {
 						List<String> result=new ArrayList<>();
@@ -100,8 +100,15 @@ public class CustomerSearchController {
 
 				} catch (Exception e) {
 					logger.error("Exception in ContentManagementController tipDetails ::: " + e);
-					return new ResponseEntity<>(responseHeaders, HttpStatus.EXPECTATION_FAILED);
+					return new ResponseEntity<>("Enter a valid tcu or engine value",responseHeaders, HttpStatus.EXPECTATION_FAILED);
 				}
+				
+				
+			}
+			
+			@GetMapping(value = "/helloccs", produces = { "application/json" })
+			public String helloCcs() {
+				return "hi welcome!";
 			}
 
 }
